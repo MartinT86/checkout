@@ -11,8 +11,8 @@ namespace SortedKata.Tests
         public void GivenNoScannedItems_TotalReturnsZero()
         {
             const decimal expectedTotal = 0;
-
             var checkout = new Checkout();
+
             var total = checkout.Total();
 
             Assert.AreEqual(expectedTotal, total);

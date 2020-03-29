@@ -4,9 +4,9 @@ namespace SortedKata
 {
     public class Checkout
     {
-        public object Total()
+        public decimal Total()
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 }
