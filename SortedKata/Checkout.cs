@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SortedKata
 {
@@ -21,7 +22,11 @@ namespace SortedKata
             {
                 subtotal += PriceReader.GetPriceFor(item);
             }
-            return subtotal;
+            var discounts = 0m;
+            var a99DiscountCount = items.Count(x => x.Name == "A99") / 3;
+            discounts = a99DiscountCount * 0.2m;
+
+            return subtotal - discounts;
         }
 
         public void Scan(Item item)
