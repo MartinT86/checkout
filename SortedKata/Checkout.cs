@@ -8,11 +8,13 @@ namespace SortedKata
     {
         private readonly IList<Item> items;
         private readonly IReadPrices PriceReader;
+        private readonly ICalculatePromotions PromotionCalculator;
 
-        public Checkout(IReadPrices priceReader)
+        public Checkout(IReadPrices priceReader, ICalculatePromotions promotionCalculator)
         {
             items = new List<Item>();
             PriceReader = priceReader;
+            PromotionCalculator = promotionCalculator;
         }
 
         public decimal Total()
@@ -22,10 +24,7 @@ namespace SortedKata
             {
                 subtotal += PriceReader.GetPriceFor(item);
             }
-            var discounts = 0m;
-            var a99DiscountCount = items.Count(x => x.Name == "A99") / 3;
-            discounts = a99DiscountCount * 0.2m;
-
+            var discounts = PromotionCalculator.Calculate(items);
             return subtotal - discounts;
         }
 

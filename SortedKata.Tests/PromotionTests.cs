@@ -13,7 +13,12 @@ namespace SortedKata.Tests
         {
             const decimal expectedTotal = 1.30m;
             var priceReader = new MemoryPriceReader();
-            var checkout = new Checkout(priceReader);
+            var promotions = new List<IPromotion>
+            {
+                new A99Promotion()
+            };
+            var promotionCalculator = new PromotionCalculator(promotions);
+            var checkout = new Checkout(priceReader, promotionCalculator);
             var item = new Item("A99");
 
             checkout.Scan(item);

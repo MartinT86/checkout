@@ -12,7 +12,8 @@ namespace SortedKata.Tests
         {
             const decimal expectedTotal = 0;
             var priceReader = new MemoryPriceReader();
-            var checkout = new Checkout(priceReader);
+            var promotionCalculator = new PromotionCalculator();
+            var checkout = new Checkout(priceReader, promotionCalculator);
 
             var total = checkout.Total();
 
@@ -24,7 +25,8 @@ namespace SortedKata.Tests
         {
             const decimal expectedTotal = 0.5m;
             var priceReader = new MemoryPriceReader();
-            var checkout = new Checkout(priceReader);
+            var promotionCalculator = new PromotionCalculator();
+            var checkout = new Checkout(priceReader, promotionCalculator);
             var item = new Item("A99");
 
             checkout.Scan(item);
@@ -38,7 +40,8 @@ namespace SortedKata.Tests
         {
             const decimal expectedTotal = 0.8m;
             var priceReader = new MemoryPriceReader();
-            var checkout = new Checkout(priceReader);
+            var promotionCalculator = new PromotionCalculator();
+            var checkout = new Checkout(priceReader, promotionCalculator);
             var itemA = new Item("A99");
             var itemB = new Item("B15");
 
