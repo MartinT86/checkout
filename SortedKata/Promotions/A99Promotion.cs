@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SortedKata
+namespace SortedKata.Promotions
 {
     public class A99Promotion : IPromotion
     {
