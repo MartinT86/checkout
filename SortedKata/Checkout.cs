@@ -19,13 +19,20 @@ namespace SortedKata
 
         public decimal Total()
         {
+            decimal subtotal = CalculateSubtotal();
+            var discounts = PromotionCalculator.Calculate(items);
+            return subtotal - discounts;
+        }
+
+        private decimal CalculateSubtotal()
+        {
             var subtotal = 0m;
             foreach (var item in items)
             {
                 subtotal += PriceReader.GetPriceFor(item);
             }
-            var discounts = PromotionCalculator.Calculate(items);
-            return subtotal - discounts;
+
+            return subtotal;
         }
 
         public void Scan(Item item)
