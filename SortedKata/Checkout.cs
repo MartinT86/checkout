@@ -8,5 +8,10 @@ namespace SortedKata
         {
             return 0;
         }
+
+        public void Scan(Item item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
