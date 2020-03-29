@@ -6,17 +6,12 @@ namespace SortedKata
     public class Checkout
     {
         private readonly IList<Item> items;
-        private readonly Dictionary<string, decimal> prices;
+        private readonly IReadPrices PriceReader;
 
-        public Checkout()
+        public Checkout(IReadPrices priceReader)
         {
             items = new List<Item>();
-            prices = new Dictionary<string, decimal>
-            {
-                {"A99", 0.5m},
-                {"B15", 0.3m},
-                {"C40", 0.6m}
-            };
+            PriceReader = priceReader;
         }
 
         public decimal Total()
@@ -24,8 +19,7 @@ namespace SortedKata
             var subtotal = 0m;
             foreach (var item in items)
             {
-                var itemPrice = prices[item.Name];
-                subtotal += itemPrice;
+                subtotal += PriceReader.GetPriceFor(item);
             }
             return subtotal;
         }

@@ -11,7 +11,8 @@ namespace SortedKata.Tests
         public void GivenNoScannedItems_TotalReturnsZero()
         {
             const decimal expectedTotal = 0;
-            var checkout = new Checkout();
+            var priceReader = new MemoryPriceReader();
+            var checkout = new Checkout(priceReader);
 
             var total = checkout.Total();
 
@@ -22,7 +23,8 @@ namespace SortedKata.Tests
         public void ScanOneProduct_TotalReturnsPrice()
         {
             const decimal expectedTotal = 0.5m;
-            var checkout = new Checkout();
+            var priceReader = new MemoryPriceReader();
+            var checkout = new Checkout(priceReader);
             var item = new Item("A99");
 
             checkout.Scan(item);
@@ -35,7 +37,8 @@ namespace SortedKata.Tests
         public void ScanTwoProducts_TotalReturnsPriceOfBoth()
         {
             const decimal expectedTotal = 0.8m;
-            var checkout = new Checkout();
+            var priceReader = new MemoryPriceReader();
+            var checkout = new Checkout(priceReader);
             var itemA = new Item("A99");
             var itemB = new Item("B15");
 
