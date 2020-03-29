@@ -51,5 +51,28 @@ namespace SortedKata.Tests
 
             Assert.AreEqual(expectedTotal, total);
         }
+
+        [Test]
+        public void MixedScans_Returns095()
+        {
+            const decimal expectedTotal = 0.95m;
+            var priceReader = new MemoryPriceReader();
+            var promotions = new List<IPromotion>
+            {
+                new A99Promotion(),
+                new B15Promotion()
+            };
+            var promotionCalculator = new PromotionCalculator(promotions);
+            var checkout = new Checkout(priceReader, promotionCalculator);
+            var itemA = new Item("A99");
+            var itemB = new Item("B15");
+
+            checkout.Scan(itemB);
+            checkout.Scan(itemA);
+            checkout.Scan(itemB);
+            var total = checkout.Total();
+
+            Assert.AreEqual(expectedTotal, total);
+        }
     }
 }
