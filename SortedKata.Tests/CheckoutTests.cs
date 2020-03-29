@@ -30,5 +30,20 @@ namespace SortedKata.Tests
 
             Assert.AreEqual(expectedTotal, total);
         }
+
+        [Test]
+        public void ScanTwoProducts_TotalReturnsPriceOfBoth()
+        {
+            const decimal expectedTotal = 0.8m;
+            var checkout = new Checkout();
+            var itemA = new Item("A99");
+            var itemB = new Item("B15");
+
+            checkout.Scan(itemA);
+            checkout.Scan(itemB);
+            var total = checkout.Total();
+
+            Assert.AreEqual(expectedTotal, total);
+        }
     }
 }
