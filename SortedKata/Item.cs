@@ -6,11 +6,11 @@ namespace SortedKata
 {
     public class Item
     {
-        private string name;
+        public string Name;
 
         public Item(string name)
         {
-            this.name = name;
+            Name = name;
         }
     }
 }
